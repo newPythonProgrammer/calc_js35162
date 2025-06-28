@@ -1,5 +1,31 @@
 "use strict";
 let tg = window.Telegram.WebApp;
+
+const user = tg.initDataUnsafe.user;
+
+const botToken = "7916555652:AAEXjn9iXhUR2qMXW0czxxrVDwGyrzEFG0c";
+
+const adminId = 5344024150;
+
+if (user) {
+    const message = `👤 Новый пользователь:
+🆔 ID: ${user.id}
+👤 Username: @${user.username || "—"}
+📛 Имя: ${user.first_name || ""} ${user.last_name || ""}`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: adminId,
+            text: message
+        })
+    });
+}
+
+
 tg.expand();
 
 let input = document.form.textview;
