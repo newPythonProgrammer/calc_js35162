@@ -5,11 +5,14 @@ tg.expand();
 let input = document.form.textview;
 
 function insert(num) {
-    if (input.value=='error') {
+    if (input.value === 'error') {
         input.value = num;
-        return
+    } else {
+        input.value += num;
     }
-    input.value = input.value + num;
+    if (navigator.vibrate) {
+        navigator.vibrate(20);
+    }
 }
 
 function clean() {
